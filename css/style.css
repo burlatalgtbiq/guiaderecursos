@@ -1,6 +1,7 @@
+/* Helvetica Neue (licencia propia). Coloque los .woff2 en /fonts con estos nombres exactos. Si no existen, se usa la fuente del sistema. */
 @font-face{font-family:"Helvetica Neue Web";font-weight:400;font-style:normal;font-display:swap;src:local("Helvetica Neue"),local("HelveticaNeue"),url("../fonts/HelveticaNeue-Regular.woff2") format("woff2")}
 @font-face{font-family:"Helvetica Neue Web";font-weight:700;font-style:normal;font-display:swap;src:local("Helvetica Neue Bold"),local("HelveticaNeue-Bold"),url("../fonts/HelveticaNeue-Bold.woff2") format("woff2")}
-:root{--bg:#fbf8f2;--ink:#1c1a3a;--mut:#4d4b6b;--pri:#D10F74;--acc:#b8245a;--card:#fff;--line:#d9d4e6;--c:#2f2a8a}
+:root{--bg:#fcfcfc;--ink:#1c1a3a;--mut:#4d4b6b;--pri:#D10F74;--acc:#b8245a;--card:#fff;--line:#d9d4e6;--c:#2f2a8a}
 @media(prefers-color-scheme:dark){:root{--bg:#14132b;--ink:#f1eefc;--mut:#c0bcdc;--pri:#b9b4ff;--acc:#ff8fb8;--card:#1f1d40;--line:#3b3870}}
 *{box-sizing:border-box}html{scroll-behavior:smooth}
 body{margin:0;font:1.0625rem/1.6 "Helvetica Neue Web","Helvetica Neue",Helvetica,Arial,sans-serif;background:var(--bg);color:var(--ink)}
@@ -44,9 +45,20 @@ a.cat:hover{background:var(--ink);color:#fff}a.cat .ic{font-size:2rem}a.cat h3{c
 dl{display:grid;grid-template-columns:minmax(7rem,12rem) 1fr;gap:.6rem 1rem}dt{font-weight:700}dd{margin:0}
 @media(max-width:600px){dl{grid-template-columns:1fr}dd{margin-bottom:.5rem}}
 .acts{display:flex;gap:.5rem;flex-wrap:wrap;margin:1rem 0}
-footer{border-top:1px solid var(--line);padding:1.5rem 1rem;color:var(--mut);text-align:center}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
 
+
+/* Franja de 10 colores bajo el menú */
+.top,footer{--b1:#22BECC;--b2:#F598AE;--b3:#241F1E;--b4:#532810;--b5:#EE2249;--b6:#F57E1F;--b7:#FCEB07;--b8:#3BB46B;--b9:#3C73B9;--b10:#99288D}.top::after,footer::before{content:"";position:absolute;left:0;right:0;height:6px;background:linear-gradient(to right,var(--b1) 0 10%,var(--b2) 10% 20%,var(--b3) 20% 30%,var(--b4) 30% 40%,var(--b5) 40% 50%,var(--b6) 50% 60%,var(--b7) 60% 70%,var(--b8) 70% 80%,var(--b9) 80% 90%,var(--b10) 90% 100%)}
+.top::after{bottom:0}footer::before{top:0}
+footer{position:relative;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:1rem 1.5rem;padding:calc(1.5rem + 6px) 1rem 1.5rem;color:var(--mut);text-align:end}
+footer img{height:56px;width:auto;background:#fff;padding:.3rem .6rem;border-radius:.3rem}
+footer{padding-inline:max(1rem,calc((100% - 68rem)/2 + 1rem))}
+/* Salida rápida flotante */
+.exit{position:fixed;right:.6rem;top:calc(env(safe-area-inset-top,0px) + 5.6rem);z-index:20;background:#b3261e;border-color:#fff;color:#fff;box-shadow:0 2px 8px rgba(0,0,0,.35)}
+.exit:hover{background:#7f1710;border-color:#fff}
+
+/*Selector de idioma*/
 .langwrap{position:relative}
 .langbtn{gap:.4rem;padding:0 .7rem}
 .langbtn .txt{display:none}
@@ -55,12 +67,6 @@ footer{border-top:1px solid var(--line);padding:1.5rem 1rem;color:var(--mut);tex
 .langs[hidden]{display:none}
 .langs a{border:0;width:100%;justify-content:flex-start;padding:.6rem 1rem;min-height:48px}
 
-/* Franja de 10 colores bajo el menú */
-.top,footer{--b1:#22BECC;--b2:#F598AE;--b3:#241F1E;--b4:#532810;--b5:#EE2249;--b6:#F57E1F;--b7:#FCEB07;--b8:#3BB46B;--b9:#3C73B9;--b10:#99288D}.top::after,footer::before{content:"";position:absolute;left:0;right:0;height:6px;background:linear-gradient(to right,var(--b1) 0 10%,var(--b2) 10% 20%,var(--b3) 20% 30%,var(--b4) 30% 40%,var(--b5) 40% 50%,var(--b6) 50% 60%,var(--b7) 60% 70%,var(--b8) 70% 80%,var(--b9) 80% 90%,var(--b10) 90% 100%)}
-.top::after{bottom:0}footer::before{top:0}
-footer{position:relative;display:flex;flex-direction:column;align-items:center;gap:.8rem;padding-top:calc(1.5rem + 6px)}
-footer img{height:56px;width:auto;background:#fff;padding:.3rem .6rem;border-radius:.3rem}
-/* Salida rápida flotante */
-.exit{position:fixed;right:.6rem;top:calc(env(safe-area-inset-top,0px) + 5.6rem);z-index:20;background:#b3261e;border-color:#fff;color:#fff;box-shadow:0 2px 8px rgba(0,0,0,.35)}
-.exit:hover{background:#7f1710;border-color:#fff}
+.lead{font-size:1.2rem;max-width:65ch;margin:0 0 1rem}
+.sep{border:0;border-top:2px solid var(--line);margin:1.5rem 0}
 
