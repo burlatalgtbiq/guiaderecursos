@@ -2,6 +2,7 @@
 const M=document.getElementById('main'),$=s=>document.querySelector(s);
 let D,T,lang='es';
 const LANGS=['es','eu','ar'],RTL=['ar'];
+const NAMES={es:'Castellano',eu:'Euskara',ar:'العربية'};
 const norm=s=>String(s??'').normalize('NFD').replace(/[\u0300-\u036f\u064b-\u065f]/g,'').toLowerCase();
 const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const t=k=>T[lang]?.[k]??T.es[k]??k;
@@ -12,7 +13,7 @@ const href=(...a)=>'#/'+[lang,...a].join('/');
 const cats=()=>D.c.categories,catOf=id=>cats().find(c=>c.id===id)||{},
  subOf=(cid,id)=>(catOf(cid).subs||[]).find(s=>s.id===id)||{},
  byId=(arr,id)=>D.c[arr].find(x=>x.id===id)||{};
-const langBtns=rest=>LANGS.map(l=>`<a href="#/${l}/${rest}" lang="${l}" hreflang="${l}"${l===lang?' aria-current="true"':''}>${l.toUpperCase()}</a>`).join('');
+const langBtns=rest=>LANGS.map(l=>`<a href="#/${l}/${rest}" lang="${l}" hreflang="${l}"${l===lang?' aria-current="true"':''}>${NAMES[l]}</a>`).join('');
 function route(){
  let h=location.hash.replace(/^#\/?/,''),[p,qs]=h.split('?'),seg=p.split('/').filter(Boolean),l=lang;
  if(LANGS.includes(seg[0]))l=seg.shift();
@@ -23,6 +24,8 @@ function chrome(r){
  $('#nav').setAttribute('aria-label','Principal');$('#menu').setAttribute('aria-label',t('menu'));$('#nav').hidden=true;$('#menu').setAttribute('aria-expanded','false');
  $('#nav').innerHTML=`<a href="${href()}"${!r.seg[0]?' aria-current="page"':''}>${t('home')}</a>`+cats().map(c=>`<a href="${href('categoria',c.id)}"${r.seg[1]===c.id&&r.seg[0]==='categoria'?' aria-current="page"':''}>${esc(L(c.name))}</a>`).join('')+`<a href="${href('buscar')}"${r.seg[0]==='buscar'?' aria-current="page"':''}>${t('search')}</a>`;
  $('#langs').setAttribute('role','group');$('#langs').setAttribute('aria-label','Idioma / Hizkuntza / اللغة');
+ $('#langbtn').setAttribute('aria-label',t('chooseLang'));$('#langtxt').textContent=t('chooseLang');
+$('#langs').hidden=true;$('#langbtn').setAttribute('aria-expanded','false');
  $('#langs').innerHTML=langBtns(r.rest);
  $('#foot').innerHTML=`<img src="assets/logo-ayuntamiento.png" alt="Ayuntamiento de Burlada/Burlata" onerror="this.remove()"><span>${esc(t('foot'))}</span>`;$('#exit').textContent='✕ '+t('exit');$('#exit').setAttribute('aria-label',t('exitL'));}
 const card=r=>{const c=catOf(r.category);return`<li class="card" style="--c:${c.color}"><h3><a href="${href('recurso',r.id)}">${esc(L(r.name))}</a></h3><p class="meta">${esc(L(c.name))} — ${esc(L(subOf(r.category,r.subcategory).name))}</p><p>${esc(L(r.description))}</p><p>${(r.audiences||[]).map(a=>`<span class="tag">${esc(L(byId('audiences',a).name))}</span>`).join('')}</p></li>`};
@@ -85,6 +88,9 @@ function render(){
  D={c,r:x.resources.filter(r=>r.active!==false)};T=i}catch(e){M.innerHTML='<p class="wrap">Error: abre el sitio desde un servidor web / Ireki gunea web zerbitzari batetik.</p>';return}
  $('#exit').onclick=()=>{try{window.close()}catch(e){}location.replace('https://www.google.es')};
  $('#menu').onclick=()=>{const n=$('#nav'),o=n.hidden;n.hidden=!o;$('#menu').setAttribute('aria-expanded',o)};
- addEventListener('keydown',e=>{if(e.key==='Escape'&&!$('#nav').hidden){$('#nav').hidden=true;$('#menu').setAttribute('aria-expanded','false');$('#menu').focus()}});
- addEventListener('hashchange',render);render()})();
+$('#langbtn').onclick=e=>{e.stopPropagation();const l=$('#langs'),o=l.hidden;l.hidden=!o;$('#langbtn').setAttribute('aria-expanded',o)};
+addEventListener('click',e=>{if(!e.target.closest('.langwrap')||e.target.closest('#langs a')){$('#langs').hidden=true;$('#langbtn').setAttribute('aria-expanded','false')}});
+addEventListener('keydown',e=>{if(e.key!=='Escape')return;
+ if(!$('#langs').hidden){$('#langs').hidden=true;$('#langbtn').setAttribute('aria-expanded','false');$('#langbtn').focus()}
+ else if(!$('#nav').hidden){$('#nav').hidden=true;$('#menu').setAttribute('aria-expanded','false');$('#menu').focus()}}); addEventListener('hashchange',render);render()})();
 })();
