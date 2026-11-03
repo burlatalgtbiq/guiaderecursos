@@ -1,13 +1,13 @@
 {"resources":[
 
 {"id":"Kattalingune","active":true,"featured":true,"demo":false,"category":"servicios","subcategory":"igualdad","scope":"foral","audiences":["todos","lgtbiq"],
- "name":{"es":"Kattalingune - Servicio de Atención Integral LGTBIQ+","eu":"Kattalingune - LGTBIQ+ pertsonei arreta osoa emateko zerbitzua"},
- "description":{"es":"Servicio público gratuito de atención psicológica, social, sexológica y jurídica","eu":"Doako laguntza psikologikoa, soziala, sexu arlokoa eta juridikoa eskaintzen duen zerbitzu publikoa da."},
- "services":{"es":["Información","Orientación jurídica","Sensibilización"],"eu":["Informazioa","Orientazio juridikoa","Sentsibilizazioa"]},
+ "name":{"es":"Kattalingune - Servicio de Atención Integral LGTBIQ+","eu":"Kattalingune - LGTBIQ+ pertsonei arreta osoa emateko zerbitzua","ar":"Kattalingune - خدمة رعاية شاملة للمثليين والمتحولين جنسياً"},
+ "description":{"es":"Servicio público gratuito de atención psicológica, social, sexológica y jurídica","eu":"Doako laguntza psikologikoa, soziala, sexu arlokoa eta juridikoa eskaintzen duen zerbitzu publikoa da.","ar":"خدمة عامة مجانية للدعم النفسي والاجتماعي والجنسي والقانوني"},
+ "services":{"es":["Información","Orientación jurídica","Sensibilización"],"eu":["Informazioa","Orientazio juridikoa","Sentsibilizazioa"],"ar":["معلومة","إرشادات قانونية"]},
  "address":"Fuente del Hierro, 2 bajo, Pamplona/Iruña","phone":"948 229 149","email":"kattalingune@kattalingune.org","web":"https://www.navarra.es/es/tramites/on/-/line/servicio-de-atencion-integral-a-personas-lgtbi",
- "schedule":{"es":"De lunes a viernes: de 09:30 h. a 14:00 h. y de 17:00 h. a 20:00 h","eu":"Astelehenetik ostiralera: 09:30etik 14:00etara eta 17:00etatik 20:00etara"},
- "access":{"es":"Gratuito. Cita previa por teléfono o correo.","eu":"Doakoa. Aurretiazko hitzordua telefonoz edo posta bidez."},
- "tags":{"es":["discriminación","derechos"],"eu":["diskriminazioa","eskubideak"]}},
+ "schedule":{"es":"De lunes a viernes: de 09:30 h. a 14:00 h. y de 17:00 h. a 20:00 h","eu":"Astelehenetik ostiralera: 09:30etik 14:00etara eta 17:00etatik 20:00etara","ar":"من الاثنين إلى الجمعة: من الساعة 9:30 صباحاً إلى الساعة 2:00 ظهراً ومن الساعة 5:00 مساءً إلى الساعة 8:00 مساءً."},
+ "access":{"es":"Gratuito. Cita previa por teléfono o correo.","eu":"Doakoa. Aurretiazko hitzordua telefonoz edo posta bidez.","ar":"مجاني. يلزم تحديد موعد عبر الهاتف أو البريد الإلكتروني."},
+ "tags":{"es":["discriminación","derechos"],"eu":["diskriminazioa","eskubideak"],"ar":["التمييز","الحقوق"]}},
 
 {"id":"Gazteleku","active":true,"featured":true,"category":"servicios","subcategory":"atencion","scope":"municipal","audiences":["lgtbiq","juventud"],
  "name":{"es":"Atención psicológica y sexoafectiva del Gazteleku","eu":"Gaztelekuko arreta psikologikoa eta sexoafektiboa"},
@@ -34,8 +34,26 @@
  "access":{"es":"Gratuito. Previa inscripción.","eu":"Doakoa, aldez aurretik izena emanda"},
  "tags":{"es":["discriminación","derechos","psicología","atención juvenil"],"eu":["diskriminazioa","eskubideak","psikologikoa"]}},
 
-{"id":"demo-orgullo","active":true,"category":"participacion","subcategory":"eventos","scope":"municipal","audiences":["all"],
+ {"id":"Biblioteca-publica","active":true,"featured":false,"category":"servicios","subcategory":"recursos","scope":"municipal","audiences":["lgtbiq","juventud"],
+ "name":{"es":"Biblioteca Pública","eu":"Liburutegi publikoa"},
+ "description":{"es":"Biblioteca pública de Burlada. Dispone de catálogo LGTBIQ+ destinado a público infantil y adulto.","eu":"Burlatako liburutegi publikoa. Haur eta helduentzako LGTBIQ+ katalogoa du."},
+"address":"Ezkabazabal, 6, Burlada","email":"biblibur@navarra.es", "web":"https://www.navarra.es/es/-/centro/biblioteca-de-burlada",
+ "schedule":{"es":"Del 15 de septiembre al 14 de junio: De lunes a viernes de 8:30 a 20:30. Del 15 de junio al 14 de septiembre: de lunes a viernes de 8:30 a 14:30","eu":"Irailaren 15etik ekainaren 14ra: astelehenetik ostiralera, 8:30etik 20:30era. Ekainaren 15etik irailaren 14ra: astelehenetik ostiralera, 8:30etik 14:30era"},
+ "access":{"es":"Gratuito.","eu":"Doakoa."},
+ "tags":{"es":["recursos","materiales","información"],"eu":["Errekurtsoak","Materialak","Informazioa"]}},
+
+  {"id":"Diversidad-cultural-y-migraciones","active":true,"featured":false,"category":"servicios","subcategory":"atencion","scope":"municipal","audiences":["lgtbiq","migrantes"],
+ "name":{"es":"Servicio de Diversidad Cultural y Migración del Ayuntamiento de Burlada","eu":"Burlatako Udaleko Kultur Aniztasun eta Migrazio Zerbitzua"},
+ "description":{"es":"El Servicio de Diversidad Cultural y Migración de Burlada, integrado en la Red TECIR del Gobierno de Navarra, trabaja para que todas las personas del municipio, sea cual sea su origen, se sientan parte de él y gocen de los mismos derechos, obligaciones e igualdad de oportunidades. Para ello fomenta la convivencia mediante el conocimiento mutuo y los espacios de encuentro intercultural, previene conductas discriminatorias, racistas o xenófobas y promueve el desarrollo de la educación inclusiva.","eu":"Burlatako Kultur Aniztasun eta Migrazio Zerbitzuak, Nafarroako Gobernuaren TECIR Sarearen barruan dagoenak, udalerriko pertsona guztiak, jatorria edozein dela ere, zerbitzuaren parte senti daitezen eta eskubide, betebehar eta aukera-berdintasun berberak izan ditzaten lan egiten du. Horretarako, bizikidetza sustatzen du, elkar ezagutuz eta kulturen arteko topaguneen bidez, jokabide diskriminatzaileak, arrazistak edo xenofoboak prebenitzen ditu, eta hezkuntza inklusiboa garatzea sustatzen du."},
+ "services":{"es":["Acogida","Aprendizaje del castellano y acercamiento al euskera como vía de inclusión, y reconocimiento de las lenguas presentes en Burlada.","Mediación intercultural"],"eu":["Harrera","Gaztelania ikastea eta euskarara hurbiltzea gizarteratzeko bide gisa, eta Burlatan dauden hizkuntzak aitortzea.","Kulturarteko bitartekaritza"]},
+"email":"diversidad@burlada.es", "web":"https://www.burlada.es/diversidad-cultural-y-migracion/","address":"Plaza de las Eras SN, Burlada","phone":"676787212",
+ "schedule":{"es":"Lunes, miércoles y viernes de 07:30 a 15:00 | Martes y jueves de 10:30 a 18:00 | Horario de verano: de lunes a viernes de 7:30 a 15:00","eu":"Astelehen, asteazken eta ostiraletan 07:30etatik 15:00etara | Astearte eta ostegunetan 10:30etik 18:00etara | Udako ordutegia: Astelehenetik ostiralera 7:30etatik 15:00etara"},
+ "access":{"es":"Gratuito.","eu":"Doakoa."},
+ "tags":{"es":["discriminación","derechos","personas migrantes","acogida"],"eu":["diskriminazioa","eskubideak","Migratzaileak","harrera"]}},
+
+{"id":"demo-orgullo","active":false,"category":"participacion","subcategory":"eventos","scope":"municipal","audiences":["all"],
  "name":{"es":"Jornadas del Orgullo (ejemplo)","eu":"Harrotasun jardunaldiak (adibidea)"},
  "description":{"es":"Actividades abiertas en torno al 28 de junio.","eu":"Ekainaren 28ren inguruko jarduera irekiak."},
  "services":{"es":["Charlas","Cine","Música"],"eu":["Hitzaldiak","Zinema","Musika"]},
  "web":"https://www.burlada.es","tags":{"es":["orgullo","cultura"],"eu":["harrotasuna","kultura"]}}]}
+
