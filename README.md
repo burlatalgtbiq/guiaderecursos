@@ -1,6 +1,6 @@
 # Guía de Recursos LGTBIQ+ del Ayuntamiento de Burlada | Burlatako Udalaren LGTBIQ+ Baliabideen Gida
 
-Portal web **estático** (HTML + CSS + JavaScript sin base de datos ni servicios externos), bilingüe castellano/euskera adaptable a otros idiomas.
+Portal web **estático** (HTML + CSS + JavaScript sin base de datos ni servicios externos), bilingüe castellano/euskera adaptable a otros idiomas. Se prepara para el árabe.
 
 ## Estructura
 ```
