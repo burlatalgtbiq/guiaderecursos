@@ -13,6 +13,7 @@ const href=(...a)=>'#/'+[lang,...a].join('/');
 const cats=()=>D.c.categories,catOf=id=>cats().find(c=>c.id===id)||{},
  subOf=(cid,id)=>(catOf(cid).subs||[]).find(s=>s.id===id)||{},
  byId=(arr,id)=>D.c[arr].find(x=>x.id===id)||{};
+ const subList=r=>[].concat(r.subcategory||[]).map(id=>L(subOf(r.category,id).name)).filter(Boolean);
 const langBtns=rest=>LANGS.map(l=>`<a href="#/${l}/${rest}" lang="${l}" hreflang="${l}"${l===lang?' aria-current="true"':''}>${NAMES[l]}</a>`).join('');
 function route(){
  let h=location.hash.replace(/^#\/?/,''),[p,qs]=h.split('?'),seg=p.split('/').filter(Boolean),l=lang;
@@ -28,7 +29,7 @@ function chrome(r){
 $('#langs').hidden=true;$('#langbtn').setAttribute('aria-expanded','false');
  $('#langs').innerHTML=langBtns(r.rest);
  $('#foot').innerHTML=`<img src="assets/logo-ayuntamiento.png" alt="Ayuntamiento de Burlada/Burlata" onerror="this.remove()"><span>${esc(t('foot'))}</span>`;$('#exit').textContent='✕ '+t('exit');$('#exit').setAttribute('aria-label',t('exitL'));}
-const card=r=>{const c=catOf(r.category);return`<li class="card" style="--c:${c.color}"><h3><a href="${href('recurso',r.id)}">${esc(L(r.name))}</a></h3><p class="meta">${esc(L(c.name))} — ${esc(L(subOf(r.category,r.subcategory).name))}</p><p>${esc(L(r.description))}</p><p>${(r.audiences||[]).map(a=>`<span class="tag">${esc(L(byId('audiences',a).name))}</span>`).join('')}</p></li>`};
+const card=r=>{const c=catOf(r.category);return`<li class="card" style="--c:${c.color}"><h3><a href="${href('recurso',r.id)}">${esc(L(r.name))}</a></h3><p class="meta">${esc(L(c.name))} — ${esc(subList(r).join(', '))}</p><p>${esc(L(r.description))}</p><p>${(r.audiences||[]).map(a=>`<span class="tag">${esc(L(byId('audiences',a).name))}</span>`).join('')}</p></li>`};
 function home(){
  const f=D.r.filter(r=>r.featured);
  M.innerHTML=`<section class="hero"><div class="wrap"><h1>${esc(t('title'))}<br>Burlada/Burlata</h1><p>${esc(t('intro'))}</p>
@@ -51,11 +52,11 @@ function list(c,q,intro){
  const body=`<p id="cnt" role="status" aria-live="polite" class="meta"></p><ul id="res" class="grid"></ul>`;
  M.innerHTML=c?`<section class="catbox" style="--c:${c.color}"><div class="wrap">${head}</div></section><div class="wrap">${body}</div>`:`<div class="wrap">${head}${body}</div>`;
  const form=$('#f');
- const hay=r=>r._h||(r._h=norm(JSON.stringify([r.name,r.description,r.services,r.tags,r.keywords,r.address])+[catOf(r.category).name,subOf(r.category,r.subcategory).name,...(r.audiences||[]).map(a=>byId('audiences',a).name),byId('scopes',r.scope).name].map(o=>JSON.stringify(o)).join(' ')));
+ const hay=r=>r._h||(r._h=norm(JSON.stringify([r.name,r.description,r.services,r.tags,r.keywords,r.address])+[catOf(r.category).name,...[].concat(r.subcategory||[]).map(s=>subOf(r.category,s).name),...(r.audiences||[]).map(a=>byId('audiences',a).name),byId('scopes',r.scope).name].map(o=>JSON.stringify(o)).join(' ')));
  const upd=()=>{
   const v=Object.fromEntries(new FormData(form));if(c)v.cat=c.id;
   const toks=norm(v.q).split(/\s+/).filter(Boolean);
-  const out=D.r.filter(r=>(!v.cat||r.category===v.cat)&&(!v.sub||r.subcategory===v.sub)&&(!v.aud||(r.audiences||[]).includes(v.aud))&&(!v.scope||r.scope===v.scope)&&toks.every(k=>hay(r).includes(k)));
+  const out=D.r.filter(r=>(!v.cat||r.category===v.cat)&&(!v.sub||[].concat(r.subcategory).includes(v.sub))&&(!v.aud||(r.audiences||[]).includes(v.aud))&&(!v.scope||r.scope===v.scope)&&toks.every(k=>hay(r).includes(k)));
   $('#cnt').textContent=`${out.length} ${t('res')}`;
   $('#res').innerHTML=out.length?out.map(card).join(''):`<li>${t('none')}</li>`;
   const p=new URLSearchParams();for(const[k,x]of Object.entries(v))if(x&&!(c&&k==='cat'))p.set(k,x);
@@ -75,7 +76,7 @@ function res(id){
  const mapU=r.map||(r.address?'https://www.google.com/maps/search/?api=1&query='+encodeURIComponent(r.address):'');
  const act=(h,l,alt)=>h?`<a class="btn${alt?' alt':''}" href="${esc(h)}"${/^https?/.test(h)?' rel="noopener" target="_blank"':''}>${l}</a>`:'';
  const info=[['addr',esc(r.address)],['tel',r.phone&&`<a href="tel:${esc(r.phone.replace(/[^+\d]/g,''))}" dir="ltr">${esc(r.phone)}</a>`],['sch',esc(L(r.schedule))]].filter(x=>x[1]).map(([k,v])=>`<div><dt>${t(k)}</dt><dd>${v}</dd></div>`).join('');
- const pills=[L(c.name),L(subOf(r.category,r.subcategory).name)].filter(Boolean).map(x=>`<span>${esc(x)}</span>`).join('');
+ const pills=[L(c.name),...subList(r)].filter(Boolean).map(x=>`<span>${esc(x)}</span>`).join('');
   M.innerHTML=`<section class="headbox" style="--c:${c.color}"><div class="wrap"><p><a href="${href('categoria',r.category)}">← ${t('back')}: ${esc(L(c.name))}</a></p>
  <div class="headrow"><h1>${esc(L(r.name))}</h1><p class="pills">${pills}</p></div>
  ${L(r.description)?`<hr class="sep"><p class="lead">${esc(L(r.description))}</p>`:''}</div></section>
@@ -100,7 +101,5 @@ addEventListener('keydown',e=>{if(e.key!=='Escape')return;
  if(!$('#langs').hidden){$('#langs').hidden=true;$('#langbtn').setAttribute('aria-expanded','false');$('#langbtn').focus()}
  else if(!$('#nav').hidden){$('#nav').hidden=true;$('#menu').setAttribute('aria-expanded','false');$('#menu').focus()}}); addEventListener('hashchange',render);render()})();
 })();
-
-
 
 
