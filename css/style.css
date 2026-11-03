@@ -83,6 +83,15 @@ footer{background:linear-gradient(120deg,#fde3ee 0%,#fbf1f6 45%,#dff4f7 100%)}
 .catbox a{color:#fff}
 .catbox a:hover{color:#fff;text-decoration:none}
 
+/* Cabecera de la ficha */
+.headrow{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-start;gap:.8rem 1.5rem}
+.headrow h1{margin:0;flex:1 1 20rem}
+.pills{display:flex;flex-wrap:wrap;gap:.5rem;margin:0}
+.pills span{border:2px solid #fff;border-radius:2rem;padding:.25rem .9rem;font-size:.95rem;font-weight:700}
+.lead{margin:1rem 0 0}
+dl.facts{display:grid;grid-template-columns:repeat(auto-fit,minmax(14rem,1fr));gap:1rem 1.5rem;margin:1.5rem 0 0;padding-top:1rem;border-top:1px solid rgba(255,255,255,.5)}
+.facts dt{font-weight:700}.facts dd{margin:0}
+
 /* Botones de la ficha con el color de su categoría */
 article.wrap .btn,article.wrap .btn.alt{background:var(--c);border-color:var(--c);color:#fff}
 article.wrap .btn:hover,article.wrap .btn.alt:hover{background:var(--c);border-color:var(--c);color:#fff;filter:brightness(.8)}
@@ -92,4 +101,3 @@ article.wrap dd a:hover{color:var(--c);filter:brightness(.7)}
 
 .lead{font-size:1.2rem;max-width:65ch;margin:0 0 1rem}
 .sep{border:0;border-top:2px solid var(--line);margin:1.5rem 0}
-
