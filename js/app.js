@@ -74,10 +74,13 @@ function res(id){
  const mapU=r.map||(r.address?'https://www.google.com/maps/search/?api=1&query='+encodeURIComponent(r.address):'');
  const act=(h,l,alt)=>h?`<a class="btn${alt?' alt':''}" href="${esc(h)}"${/^https?/.test(h)?' rel="noopener" target="_blank"':''}>${l}</a>`:'';
  M.innerHTML=`<article class="wrap" style="--c:${c.color}"><p><a href="${href('categoria',r.category)}">← ${t('back')}: ${esc(L(c.name))}</a></p>
- <h1>${esc(L(r.name))}</h1><p class="meta">${esc(L(c.name))} — ${esc(L(subOf(r.category,r.subcategory).name))}</p>
+<h1>${esc(L(r.name))}</h1>
+ ${L(r.description)?`<p class="lead">${esc(L(r.description))}</p>`:''}
+ <hr class="sep">
+ <p class="meta">${esc(L(c.name))} — ${esc(L(subOf(r.category,r.subcategory).name))}</p>
  ${r.demo?`<p class="note">${t('demo')}</p>`:''}
  <div class="acts">${act(r.phone&&'tel:'+r.phone.replace(/[^+\d]/g,''),'📞 '+t('call'))}${act(r.email&&'mailto:'+r.email,'✉️ '+t('write'),1)}${act(r.web&&safe(r.web),'🌐 '+t('visit'),1)}${act(mapU,'📍 '+t('map'),1)}</div>
- <dl>${row('desc',esc(L(r.description)))}${row('svc',svc.length?`<ul>${svc.map(s=>`<li>${esc(s)}</li>`).join('')}</ul>`:'')}${row('addr',esc(r.address))}${row('tel',r.phone&&`<a href="tel:${esc(r.phone.replace(/[^+\d]/g,''))}" dir="ltr">${esc(r.phone)}</a>`)}${row('mail',r.email&&`<a href="mailto:${esc(r.email)}" dir="ltr">${esc(r.email)}</a>`)}${row('web',r.web&&`<a href="${esc(safe(r.web))}" rel="noopener" dir="ltr">${esc(r.web)}</a>`)}${row('soc',soc.map(s=>`<a href="${esc(safe(s.u))}" rel="noopener">${esc(s.n)}</a>`).join(' · '))}${row('sch',esc(L(r.schedule)))}${row('acc',esc(L(r.access)))}${row('aud',(r.audiences||[]).map(a=>esc(L(byId('audiences',a).name))).join(', '))}${row('sc',esc(L(byId('scopes',r.scope).name)))}${row('tags',tags.map(x=>`<span class="tag">${esc(x)}</span>`).join(''))}</dl></article>`}
+ <dl>${row('svc',svc.length?`<ul>${svc.map(s=>`<li>${esc(s)}</li>`).join('')}</ul>`:'')}${row('addr',esc(r.address))}${row('tel',r.phone&&`<a href="tel:${esc(r.phone.replace(/[^+\d]/g,''))}" dir="ltr">${esc(r.phone)}</a>`)}${row('mail',r.email&&`<a href="mailto:${esc(r.email)}" dir="ltr">${esc(r.email)}</a>`)}${row('web',r.web&&`<a href="${esc(safe(r.web))}" rel="noopener" dir="ltr">${esc(r.web)}</a>`)}${row('soc',soc.map(s=>`<a href="${esc(safe(s.u))}" rel="noopener">${esc(s.n)}</a>`).join(' · '))}${row('sch',esc(L(r.schedule)))}${row('acc',esc(L(r.access)))}${row('aud',(r.audiences||[]).map(a=>esc(L(byId('audiences',a).name))).join(', '))}${row('sc',esc(L(byId('scopes',r.scope).name)))}${row('tags',tags.map(x=>`<span class="tag">${esc(x)}</span>`).join(''))}</dl></article>`}
 function render(){
  const r=route();lang=r.l;document.documentElement.lang=lang;document.documentElement.dir=RTL.includes(lang)?'rtl':'ltr';document.title=t('title')+' · Burlada/Burlata';
  chrome(r);const[v,id]=r.seg;
@@ -94,3 +97,4 @@ addEventListener('keydown',e=>{if(e.key!=='Escape')return;
  if(!$('#langs').hidden){$('#langs').hidden=true;$('#langbtn').setAttribute('aria-expanded','false');$('#langbtn').focus()}
  else if(!$('#nav').hidden){$('#nav').hidden=true;$('#menu').setAttribute('aria-expanded','false');$('#menu').focus()}}); addEventListener('hashchange',render);render()})();
 })();
+
