@@ -25,7 +25,7 @@
  "access":{"es":"Gratuito. Derivación desde Atención Primaria o Salud Sexual y Reproductiva (CASSYR)","eu":"Doakoa. Lehen mailako arretatik edo sexu- eta ugalketa-osasunetik bideratzea (SUOAZ)"},
  "tags":{"es":["derechos","psicología","atención juvenil"],"eu":["eskubideak","psikologikoa"]}},
 
- {"id":"Xirimiri","active":true,"featured":true,"category":"participacion","subcategory":"igualdad","scope":"municipal","audiences":["lgtbiq","juventud","familias","trans"],
+ {"id":"Xirimiri","active":true,"featured":true,"category":"participacion","subcategory":"eventos","scope":"municipal","audiences":["lgtbiq","juventud","familias","trans"],
  "name":{"es":"Xirimiri","eu":"Xirimiri"},
  "description":{"es":"Grupo de apoyo mutuo para personas LGTBIQ+ de Burlada, impulsado por el Ayuntamiento y dinamizado por la Asociación Navarra LGTBIQ+ Friends. Es un espacio seguro y horizontal para compartir experiencias, crear vínculos y reducir el aislamiento.","eu":"Burlatako LGTBIQ+ pertsonei laguntzeko taldea, Udalak sustatua eta Navarra LGTBIQ+ Friends Elkarteak dinamizatua. Esperientziak partekatzeko, loturak sortzeko eta isolamendua murrizteko espazio segurua eta horizontala da."},
  "services":{"es":["Un espacio seguro y confidencial donde compartir experiencias, reflexiones e ideas con otras personas LGTBIQ+ de Burlada.","Acompañamiento entre iguales, basado en la empatía y la vivencia compartida."],"eu":["Burlatako beste LGTBIQ+ pertsona batzuekin esperientziak, gogoetak eta ideiak partekatzeko gune seguru eta konfidentziala.","Berdinen arteko laguntza, enpatian eta bizipen partekatuan oinarritua."]},
@@ -51,9 +51,15 @@
  "access":{"es":"Gratuito.","eu":"Doakoa."},
  "tags":{"es":["discriminación","derechos","personas migrantes","acogida"],"eu":["diskriminazioa","eskubideak","Migratzaileak","harrera"]}},
 
+ {"id":"Naizen","active":true,"featured":false,"demo":false,"category":"asociacionismo","subcategory":"familias","scope":"foral","audiences":["lgtbiq","juventud","familias","trans"],
+ "name":{"es":"Naizen","eu":"Naizen","ar":"Naizen"},
+ "description":{"es":"Asociación de Familias de Menores Transexuales de Navarra y Euskadi","eu":"Nafarroako eta Euskadiko Adingabe Transexualen Familien Elkartea","ar":"رابطة عائلات القاصرين المتحولين جنسياً في نافارا وإقليم الباسك"},
+ "services":{"es":["Apoyo mutuo: Crea redes de acompañamiento y tranquilidad para las familias de niños, niñas y adolescentes trans","Asesoramiento y formación: Ofrece orientación a familias y profesionales de distintos ámbitos (educativo, sanitario, social, judicial o deportivo).","Visibilización y derechos: Promueve la aceptación de la transexualidad como una diversidad más, impulsa reformas legales protectoras y visibiliza estas realidades mediante campañas y actos públicos."],"eu":["Elkarrekiko laguntza: Trans haur eta nerabeen familientzako laguntza eta lasaitasun sareak sortzen ditu","Aholkularitza eta prestakuntza: Hainbat arlotako (hezkuntza, osasuna, gizartea, judiziala edo kirola) familia eta profesionalei orientazioa eskaintzen die.","Ikusaraztea eta eskubideak: Transexualitatea aniztasun gisa onartzea sustatzen du, legezko erreforma babesleak bultzatzen ditu eta errealitate horiek agerian uzten ditu kanpaina eta ekitaldi publikoen bidez."],"ar":["الدعم المتبادل: إنشاء شبكات دعم وطمأنينة لأسر الأطفال والمراهقين المتحولين جنسياً.","المشورة والتدريب: يقدم التوجيه للعائلات والمهنيين في مختلف المجالات (التعليمية، الصحية، الاجتماعية، القضائية أو الرياضية)."]},
+ "address":"Paseo de Colón, 50, Donostia/San Sebastián","phone":"688 728 055","email":"info@naizen.eus","web":"naizen.eus",
+ "tags":{"es":["Familias de personas trans","Infancia trans"],"eu":["Trans pertsonen familiak","Trans haurtzaroa"],"ar":["عائلات المتحولين جنسياً","الأطفال المتحولون جنسياً"]}},
+
 {"id":"demo-orgullo","active":false,"category":"participacion","subcategory":"eventos","scope":"municipal","audiences":["all"],
  "name":{"es":"Jornadas del Orgullo (ejemplo)","eu":"Harrotasun jardunaldiak (adibidea)"},
  "description":{"es":"Actividades abiertas en torno al 28 de junio.","eu":"Ekainaren 28ren inguruko jarduera irekiak."},
  "services":{"es":["Charlas","Cine","Música"],"eu":["Hitzaldiak","Zinema","Musika"]},
  "web":"https://www.burlada.es","tags":{"es":["orgullo","cultura"],"eu":["harrotasuna","kultura"]}}]}
-
