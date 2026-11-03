@@ -6,7 +6,13 @@
 <meta name="theme-color" content="#24215e"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="Guía de recursos LGTBIQ+"><meta name="application-name" content="Guía de recursos LGTBIQ+"><link rel="stylesheet" href="css/style.css"></head>
 <body><a class="skip" id="skip" href="#main">Saltar al contenido</a>
 <header class="top"><a id="brand" class="brand"></a>
-<div class="tools"><div id="langs" class="langs"></div>
+<div class="tools"><div class="langwrap">
+  <button id="langbtn" class="burger langbtn" type="button" aria-expanded="false" aria-controls="langs">
+    <svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2c3 3 3 17 0 20M12 2c-3 3-3 17 0 20"/></svg>
+    <span id="langtxt" class="txt"></span>
+  </button>
+  <div id="langs" class="langs" hidden></div>
+</div>
 <button id="menu" class="burger" type="button" aria-expanded="false" aria-controls="nav"><svg width="26" height="20" viewBox="0 0 26 20" aria-hidden="true"><path d="M1 2h24M1 10h24M1 18h24" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/></svg></button></div>
 <nav id="nav" hidden></nav></header>
 <button id="exit" class="exit" type="button"></button>
