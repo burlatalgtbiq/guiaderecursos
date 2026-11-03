@@ -32,7 +32,7 @@ const card=r=>{const c=catOf(r.category);return`<li class="card" style="--c:${c.
 function home(){
  const f=D.r.filter(r=>r.featured);
  M.innerHTML=`<section class="hero"><div class="wrap"><h1>${esc(t('title'))}<br>Burlada/Burlata</h1><p>${esc(t('intro'))}</p>
- <form class="sform" role="search"><label class="vh" for="q" style="position:absolute;left:-999px">${t('search')}</label><input id="q" type="search" placeholder="${esc(t('ph'))}"><button>${t('go')}</button></form></div></section>
+ <form class="sform" role="search"><label class="vh" for="q">${t('search')}</label><input id="q" type="search" placeholder="${esc(t('ph'))}"><button>${t('go')}</button></form></div></section>
  <div class="wrap"><h2>${t('cats')}</h2><ul class="grid">${cats().map(c=>`<li><a class="cat" style="--c:${c.color}" href="${href('categoria',c.id)}"><span class="ic" aria-hidden="true">${c.icon}</span><h3>${esc(L(c.name))}</h3><p>${esc(L(c.desc))}</p></a></li>`).join('')}</ul>
  <h2>${t('feat')}</h2><ul class="grid">${f.map(card).join('')}</ul>
  <h2>${t('about')}</h2><p style="max-width:65ch">${esc(t('aboutTxt'))}</p>
@@ -76,10 +76,10 @@ function res(id){
  const act=(h,l,alt)=>h?`<a class="btn${alt?' alt':''}" href="${esc(h)}"${/^https?/.test(h)?' rel="noopener" target="_blank"':''}>${l}</a>`:'';
  const info=[['addr',esc(r.address)],['tel',r.phone&&`<a href="tel:${esc(r.phone.replace(/[^+\d]/g,''))}" dir="ltr">${esc(r.phone)}</a>`],['sch',esc(L(r.schedule))]].filter(x=>x[1]).map(([k,v])=>`<div><dt>${t(k)}</dt><dd>${v}</dd></div>`).join('');
  const pills=[L(c.name),L(subOf(r.category,r.subcategory).name)].filter(Boolean).map(x=>`<span>${esc(x)}</span>`).join('');
-  M.innerHTML=`<section class="catbox" style="--c:${c.color}"><div class="wrap"><p><a href="${href('categoria',r.category)}">← ${t('back')}: ${esc(L(c.name))}</a></p>
+  M.innerHTML=`<section class="headbox" style="--c:${c.color}"><div class="wrap"><p><a href="${href('categoria',r.category)}">← ${t('back')}: ${esc(L(c.name))}</a></p>
  <div class="headrow"><h1>${esc(L(r.name))}</h1><p class="pills">${pills}</p></div>
- ${L(r.description)?`<p class="lead">${esc(L(r.description))}</p>`:''}
- ${info?`<dl class="facts">${info}</dl>`:''}</div></section>
+ ${L(r.description)?`<hr class="sep"><p class="lead">${esc(L(r.description))}</p>`:''}</div></section>
+ ${info?`<section class="catbox" style="--c:${c.color}"><div class="wrap"><dl class="facts">${info}</dl></div></section>`:''}
  <article class="wrap" style="--c:${c.color}">
  ${r.demo?`<p class="note">${t('demo')}</p>`:''}
  <div class="acts">${act(r.phone&&'tel:'+r.phone.replace(/[^+\d]/g,''),'📞 '+t('call'))}${act(r.email&&'mailto:'+r.email,'✉️ '+t('write'),1)}${act(r.web&&safe(r.web),'🌐 '+t('visit'),1)}${act(mapU,'📍 '+t('map'),1)}</div>
@@ -100,6 +100,7 @@ addEventListener('keydown',e=>{if(e.key!=='Escape')return;
  if(!$('#langs').hidden){$('#langs').hidden=true;$('#langbtn').setAttribute('aria-expanded','false');$('#langbtn').focus()}
  else if(!$('#nav').hidden){$('#nav').hidden=true;$('#menu').setAttribute('aria-expanded','false');$('#menu').focus()}}); addEventListener('hashchange',render);render()})();
 })();
+
 
 
 
