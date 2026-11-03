@@ -42,13 +42,14 @@ function home(){
 function list(c,q,intro){
  const opt=(arr,k,sel)=>`<option value="">${t('all')}</option>`+arr.map(x=>`<option value="${x.id}"${sel===x.id?' selected':''}>${esc(L(x.name))}</option>`).join('');
  const subs=(c?[c]:cats()).map(k=>`<optgroup label="${esc(L(k.name))}">${k.subs.map(s=>`<option value="${s.id}"${q.sub===s.id?' selected':''}>${esc(L(s.name))}</option>`).join('')}</optgroup>`).join('');
- M.innerHTML=`<div class="wrap">${intro||`<h1>${t('search')}</h1>`}
+ const head=`${intro||`<h1>${t('search')}</h1>`}
  <form id="f" class="filters" role="search"><label>${t('fq')}<input name="q" type="search" value="${esc(q.q||'')}"></label>
  ${c?'':`<label>${t('fc')}<select name="cat">${opt(cats(),'',q.cat)}</select></label>`}
  <label>${t('fs')}<select name="sub"><option value="">${t('all')}</option>${subs}</select></label>
  <label>${t('fa')}<select name="aud">${opt(D.c.audiences,'',q.aud)}</select></label>
- <label>${t('fo')}<select name="scope">${opt(D.c.scopes,'',q.scope)}</select></label></form>
- <p id="cnt" role="status" aria-live="polite" class="meta"></p><ul id="res" class="grid"></ul></div>`;
+ <label>${t('fo')}<select name="scope">${opt(D.c.scopes,'',q.scope)}</select></label></form>`;
+ const body=`<p id="cnt" role="status" aria-live="polite" class="meta"></p><ul id="res" class="grid"></ul>`;
+ M.innerHTML=c?`<section class="catbox" style="--c:${c.color}"><div class="wrap">${head}</div></section><div class="wrap">${body}</div>`:`<div class="wrap">${head}${body}</div>`;
  const form=$('#f');
  const hay=r=>r._h||(r._h=norm(JSON.stringify([r.name,r.description,r.services,r.tags,r.keywords,r.address])+[catOf(r.category).name,subOf(r.category,r.subcategory).name,...(r.audiences||[]).map(a=>byId('audiences',a).name),byId('scopes',r.scope).name].map(o=>JSON.stringify(o)).join(' ')));
  const upd=()=>{
@@ -64,7 +65,7 @@ function list(c,q,intro){
 function cat(id,q){
  const c=cats().find(x=>x.id===id);if(!c)return nf();
  document.title=L(c.name)+' · '+t('title');
- list(c,q,`<h1 style="color:var(--c)">${c.icon} ${esc(L(c.name))}</h1><p style="max-width:60ch">${esc(L(c.desc))}</p>`);M.firstChild.style.setProperty('--c',c.color)}
+ list(c,q,`<h1>${c.icon} ${esc(L(c.name))}</h1><p style="max-width:60ch">${esc(L(c.desc))}</p>`);}
 const nf=()=>{M.innerHTML=`<div class="wrap"><p>${t('nf')}</p><a class="btn" href="${href()}">${t('home')}</a></div>`};
 function res(id){
  const r=D.r.find(x=>x.id===id);if(!r)return nf();const c=catOf(r.category);
@@ -73,10 +74,10 @@ function res(id){
  const svc=LA(r.services),tags=LA(r.tags),soc=r.social||[];
  const mapU=r.map||(r.address?'https://www.google.com/maps/search/?api=1&query='+encodeURIComponent(r.address):'');
  const act=(h,l,alt)=>h?`<a class="btn${alt?' alt':''}" href="${esc(h)}"${/^https?/.test(h)?' rel="noopener" target="_blank"':''}>${l}</a>`:'';
- M.innerHTML=`<article class="wrap" style="--c:${c.color}"><p><a href="${href('categoria',r.category)}">← ${t('back')}: ${esc(L(c.name))}</a></p>
-<h1>${esc(L(r.name))}</h1>
- ${L(r.description)?`<p class="lead">${esc(L(r.description))}</p>`:''}
- <hr class="sep">
+ M.innerHTML=`<section class="catbox" style="--c:${c.color}"><div class="wrap"><p><a href="${href('categoria',r.category)}">← ${t('back')}: ${esc(L(c.name))}</a></p>
+ <h1>${esc(L(r.name))}</h1>
+ ${L(r.description)?`<p class="lead">${esc(L(r.description))}</p>`:''}</div></section>
+ <article class="wrap" style="--c:${c.color}">
  <p class="meta">${esc(L(c.name))} — ${esc(L(subOf(r.category,r.subcategory).name))}</p>
  ${r.demo?`<p class="note">${t('demo')}</p>`:''}
  <div class="acts">${act(r.phone&&'tel:'+r.phone.replace(/[^+\d]/g,''),'📞 '+t('call'))}${act(r.email&&'mailto:'+r.email,'✉️ '+t('write'),1)}${act(r.web&&safe(r.web),'🌐 '+t('visit'),1)}${act(mapU,'📍 '+t('map'),1)}</div>
@@ -97,4 +98,5 @@ addEventListener('keydown',e=>{if(e.key!=='Escape')return;
  if(!$('#langs').hidden){$('#langs').hidden=true;$('#langbtn').setAttribute('aria-expanded','false');$('#langbtn').focus()}
  else if(!$('#nav').hidden){$('#nav').hidden=true;$('#menu').setAttribute('aria-expanded','false');$('#menu').focus()}}); addEventListener('hashchange',render);render()})();
 })();
+
 
