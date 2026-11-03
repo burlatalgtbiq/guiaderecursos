@@ -1,7 +1,8 @@
 (()=>{
 const M=document.getElementById('main'),$=s=>document.querySelector(s);
 let D,T,lang='es';
-const norm=s=>String(s??'').normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase();
+const LANGS=['es','eu','ar'],RTL=['ar'];
+const norm=s=>String(s??'').normalize('NFD').replace(/[\u0300-\u036f\u064b-\u065f]/g,'').toLowerCase();
 const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const t=k=>T[lang]?.[k]??T.es[k]??k;
 const L=o=>o==null?'':typeof o==='string'?o:(o[lang]||o.es||'');
@@ -11,17 +12,18 @@ const href=(...a)=>'#/'+[lang,...a].join('/');
 const cats=()=>D.c.categories,catOf=id=>cats().find(c=>c.id===id)||{},
  subOf=(cid,id)=>(catOf(cid).subs||[]).find(s=>s.id===id)||{},
  byId=(arr,id)=>D.c[arr].find(x=>x.id===id)||{};
+const langBtns=rest=>LANGS.map(l=>`<a href="#/${l}/${rest}" lang="${l}" hreflang="${l}"${l===lang?' aria-current="true"':''}>${l.toUpperCase()}</a>`).join('');
 function route(){
  let h=location.hash.replace(/^#\/?/,''),[p,qs]=h.split('?'),seg=p.split('/').filter(Boolean),l=lang;
- if(seg[0]==='es'||seg[0]==='eu')l=seg.shift();
+ if(LANGS.includes(seg[0]))l=seg.shift();
  return{l,seg,rest:seg.join('/')+(qs?'?'+qs:''),q:Object.fromEntries(new URLSearchParams(qs||''))}}
 function chrome(r){
  $('#skip').textContent=t('skip');
- const b=$('#brand');b.href=href();b.innerHTML=`<img src="assets/logo.svg" alt="" width="44" height="44"><span><strong>${esc(t('title'))}`;
+ const b=$('#brand');b.href=href();b.innerHTML=`<img src="assets/logo.svg" alt="" width="44" height="44"><span><strong>${esc(t('title'))}</strong><small>Burlada/Burlata</small></span>`;
  $('#nav').setAttribute('aria-label','Principal');$('#menu').setAttribute('aria-label',t('menu'));$('#nav').hidden=true;$('#menu').setAttribute('aria-expanded','false');
  $('#nav').innerHTML=`<a href="${href()}"${!r.seg[0]?' aria-current="page"':''}>${t('home')}</a>`+cats().map(c=>`<a href="${href('categoria',c.id)}"${r.seg[1]===c.id&&r.seg[0]==='categoria'?' aria-current="page"':''}>${esc(L(c.name))}</a>`).join('')+`<a href="${href('buscar')}"${r.seg[0]==='buscar'?' aria-current="page"':''}>${t('search')}</a>`;
- $('#langs').setAttribute('role','group');$('#langs').setAttribute('aria-label','Idioma / Hizkuntza');
- $('#langs').innerHTML=['es','eu'].map(l=>`<a href="#/${l}/${r.rest}" lang="${l}" hreflang="${l}"${l===lang?' aria-current="true"':''}>${l.toUpperCase()}</a>`).join('');
+ $('#langs').setAttribute('role','group');$('#langs').setAttribute('aria-label','Idioma / Hizkuntza / اللغة');
+ $('#langs').innerHTML=langBtns(r.rest);
  $('#foot').innerHTML=`<img src="assets/logo-ayuntamiento.png" alt="Ayuntamiento de Burlada/Burlata" onerror="this.remove()"><span>${esc(t('foot'))}</span>`;$('#exit').textContent='✕ '+t('exit');$('#exit').setAttribute('aria-label',t('exitL'));}
 const card=r=>{const c=catOf(r.category);return`<li class="card" style="--c:${c.color}"><h3><a href="${href('recurso',r.id)}">${esc(L(r.name))}</a></h3><p class="meta">${esc(L(c.name))} — ${esc(L(subOf(r.category,r.subcategory).name))}</p><p>${esc(L(r.description))}</p><p>${(r.audiences||[]).map(a=>`<span class="tag">${esc(L(byId('audiences',a).name))}</span>`).join('')}</p></li>`};
 function home(){
@@ -54,7 +56,7 @@ function list(c,q,intro){
   $('#res').innerHTML=out.length?out.map(card).join(''):`<li>${t('none')}</li>`;
   const p=new URLSearchParams();for(const[k,x]of Object.entries(v))if(x&&!(c&&k==='cat'))p.set(k,x);
   history.replaceState(null,'','#/'+lang+'/'+(c?'categoria/'+c.id:'buscar')+(p.size?'?'+p:''));
-  $('#langs').innerHTML=['es','eu'].map(l=>`<a href="#/${l}/${route().rest}" lang="${l}" hreflang="${l}"${l===lang?' aria-current="true"':''}>${l.toUpperCase()}</a>`).join('')};
+  $('#langs').innerHTML=langBtns(route().rest)};
  form.oninput=upd;form.onsubmit=e=>e.preventDefault();upd()}
 function cat(id,q){
  const c=cats().find(x=>x.id===id);if(!c)return nf();
@@ -66,14 +68,15 @@ function res(id){
  document.title=L(r.name)+' · '+t('title');
  const row=(k,v)=>v?`<dt>${t(k)}</dt><dd>${v}</dd>`:'';
  const svc=LA(r.services),tags=LA(r.tags),soc=r.social||[];
-const mapU=r.map||(r.address?'https://www.google.com/maps/search/?api=1&query='+encodeURIComponent(r.address):''); const act=(h,l,alt)=>h?`<a class="btn${alt?' alt':''}" href="${esc(h)}"${/^https?/.test(h)?' rel="noopener" target="_blank"':''}>${l}</a>`:'';
+ const mapU=r.map||(r.address?'https://www.google.com/maps/search/?api=1&query='+encodeURIComponent(r.address):'');
+ const act=(h,l,alt)=>h?`<a class="btn${alt?' alt':''}" href="${esc(h)}"${/^https?/.test(h)?' rel="noopener" target="_blank"':''}>${l}</a>`:'';
  M.innerHTML=`<article class="wrap" style="--c:${c.color}"><p><a href="${href('categoria',r.category)}">← ${t('back')}: ${esc(L(c.name))}</a></p>
  <h1>${esc(L(r.name))}</h1><p class="meta">${esc(L(c.name))} — ${esc(L(subOf(r.category,r.subcategory).name))}</p>
  ${r.demo?`<p class="note">${t('demo')}</p>`:''}
  <div class="acts">${act(r.phone&&'tel:'+r.phone.replace(/[^+\d]/g,''),'📞 '+t('call'))}${act(r.email&&'mailto:'+r.email,'✉️ '+t('write'),1)}${act(r.web&&safe(r.web),'🌐 '+t('visit'),1)}${act(mapU,'📍 '+t('map'),1)}</div>
- <dl>${row('desc',esc(L(r.description)))}${row('svc',svc.length?`<ul>${svc.map(s=>`<li>${esc(s)}</li>`).join('')}</ul>`:'')}${row('addr',esc(r.address))}${row('tel',r.phone&&`<a href="tel:${esc(r.phone.replace(/[^+\d]/g,''))}">${esc(r.phone)}</a>`)}${row('mail',r.email&&`<a href="mailto:${esc(r.email)}">${esc(r.email)}</a>`)}${row('web',r.web&&`<a href="${esc(safe(r.web))}" rel="noopener">${esc(r.web)}</a>`)}${row('soc',soc.map(s=>`<a href="${esc(safe(s.u))}" rel="noopener">${esc(s.n)}</a>`).join(' · '))}${row('sch',esc(L(r.schedule)))}${row('acc',esc(L(r.access)))}${row('aud',(r.audiences||[]).map(a=>esc(L(byId('audiences',a).name))).join(', '))}${row('sc',esc(L(byId('scopes',r.scope).name)))}${row('tags',tags.map(x=>`<span class="tag">${esc(x)}</span>`).join(''))}</dl></article>`}
+ <dl>${row('desc',esc(L(r.description)))}${row('svc',svc.length?`<ul>${svc.map(s=>`<li>${esc(s)}</li>`).join('')}</ul>`:'')}${row('addr',esc(r.address))}${row('tel',r.phone&&`<a href="tel:${esc(r.phone.replace(/[^+\d]/g,''))}" dir="ltr">${esc(r.phone)}</a>`)}${row('mail',r.email&&`<a href="mailto:${esc(r.email)}" dir="ltr">${esc(r.email)}</a>`)}${row('web',r.web&&`<a href="${esc(safe(r.web))}" rel="noopener" dir="ltr">${esc(r.web)}</a>`)}${row('soc',soc.map(s=>`<a href="${esc(safe(s.u))}" rel="noopener">${esc(s.n)}</a>`).join(' · '))}${row('sch',esc(L(r.schedule)))}${row('acc',esc(L(r.access)))}${row('aud',(r.audiences||[]).map(a=>esc(L(byId('audiences',a).name))).join(', '))}${row('sc',esc(L(byId('scopes',r.scope).name)))}${row('tags',tags.map(x=>`<span class="tag">${esc(x)}</span>`).join(''))}</dl></article>`}
 function render(){
- const r=route();lang=r.l;document.documentElement.lang=lang;document.title=t('title')+' · Burlada/Burlata';
+ const r=route();lang=r.l;document.documentElement.lang=lang;document.documentElement.dir=RTL.includes(lang)?'rtl':'ltr';document.title=t('title')+' · Burlada/Burlata';
  chrome(r);const[v,id]=r.seg;
  v==='categoria'?cat(id,r.q):v==='recurso'?res(id):v==='buscar'?list(null,r.q):v?nf():home();
  if(!r.fromInit)M.focus({preventScroll:true});scrollTo(0,0)}
