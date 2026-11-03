@@ -1,0 +1,41 @@
+{"resources":[
+
+{"id":"Kattalingune","active":true,"featured":true,"demo":false,"category":"servicios","subcategory":"igualdad","scope":"foral","audiences":["todos","lgtbiq"],
+ "name":{"es":"Kattalingune - Servicio de Atención Integral LGTBIQ+","eu":"Kattalingune - LGTBIQ+ pertsonei arreta osoa emateko zerbitzua"},
+ "description":{"es":"Servicio público gratuito de atención psicológica, social, sexológica y jurídica","eu":"Doako laguntza psikologikoa, soziala, sexu arlokoa eta juridikoa eskaintzen duen zerbitzu publikoa da."},
+ "services":{"es":["Información","Orientación jurídica","Sensibilización"],"eu":["Informazioa","Orientazio juridikoa","Sentsibilizazioa"]},
+ "address":"Fuente del Hierro, 2 bajo, Pamplona/Iruña","phone":"948 229 149","email":"kattalingune@kattalingune.org","web":"https://www.navarra.es/es/tramites/on/-/line/servicio-de-atencion-integral-a-personas-lgtbi",
+ "schedule":{"es":"De lunes a viernes: de 09:30 h. a 14:00 h. y de 17:00 h. a 20:00 h","eu":"Astelehenetik ostiralera: 09:30etik 14:00etara eta 17:00etatik 20:00etara"},
+ "access":{"es":"Gratuito. Cita previa por teléfono o correo.","eu":"Doakoa. Aurretiazko hitzordua telefonoz edo posta bidez."},
+ "tags":{"es":["discriminación","derechos"],"eu":["diskriminazioa","eskubideak"]}},
+
+{"id":"Gazteleku","active":true,"featured":true,"category":"servicios","subcategory":"atencion","scope":"municipal","audiences":["lgtbiq","juventud"],
+ "name":{"es":"Atención psicológica y sexoafectiva del Gazteleku","eu":"Gaztelekuko arreta psikologikoa eta sexoafektiboa"},
+ "description":{"es":"Servicio de atención psicológica y sexoafectiva para personas de 12 a 30 años.","eu":"12 eta 30 urte bitarteko pertsonentzako laguntza psikologiko eta sexoafektiboko zerbitzua."},
+ "services":{"es":["Información general","Derivación a recursos"],"eu":["Informazio orokorra","Baliabideetara bideratzea"]},
+"address":"Ermita 22, Burlada","phone":"690 001 564","email":"gazteleku@burlada.es",
+ "schedule":{"es":"Lunes de 17:00 a 20:45","eu":"Astelehenetan: 17:00etatik 20:45era"},
+ "access":{"es":"Gratuito. Cita previa por teléfono o correo.","eu":"Doakoa. Aurretiazko hitzordua telefonoz edo posta bidez."},
+ "tags":{"es":["discriminación","derechos","psicología","atención juvenil"],"eu":["diskriminazioa","eskubideak","psikologikoa"]}},
+
+ {"id":"Transbide","active":true,"featured":true,"category":"salud","subcategory":"sexual","scope":"foral","audiences":["lgtbiq","juventud","trans","familias"],
+ "name":{"es":"Transbide","eu":"Transbide"},
+ "description":{"es":"Unidad técnica y multidisciplinar del sistema sanitario público de Navarra para garantizar una atención integral, respetuosa y de calidad a las personas transexuales, transgénero e intersexuales, así como a sus familiares","eu":"Nafarroako osasun-sistema publikoko unitate teknikoa eta diziplina anitzekoa, transexualei, transgeneroei eta intersexualei eta haien senideei arreta integrala, errespetuzkoa eta kalitatezkoa bermatzeko"},
+ "services":{"es":["Endocrinología","Psicología clínica","Cirugía","Ginecología y urología","Tratamiento de la voz"],"eu":["Endokrinologia","Psikologia klinikoa","Kirurgia","Ginekologia eta Urologia","Ahotsaren tratamendua"]},
+ "access":{"es":"Gratuito. Derivación desde Atención Primaria o Salud Sexual y Reproductiva (CASSYR)","eu":"Doakoa. Lehen mailako arretatik edo sexu- eta ugalketa-osasunetik bideratzea (SUOAZ)"},
+ "tags":{"es":["derechos","psicología","atención juvenil"],"eu":["eskubideak","psikologikoa"]}},
+
+ {"id":"Xirimiri","active":true,"featured":true,"category":"participacion","subcategory":"igualdad","scope":"municipal","audiences":["lgtbiq","juventud","familias","trans"],
+ "name":{"es":"Xirimiri","eu":"Xirimiri"},
+ "description":{"es":"Grupo de apoyo mutuo para personas LGTBIQ+ de Burlada, impulsado por el Ayuntamiento y dinamizado por la Asociación Navarra LGTBIQ+ Friends. Es un espacio seguro y horizontal para compartir experiencias, crear vínculos y reducir el aislamiento.","eu":"Burlatako LGTBIQ+ pertsonei laguntzeko taldea, Udalak sustatua eta Navarra LGTBIQ+ Friends Elkarteak dinamizatua. Esperientziak partekatzeko, loturak sortzeko eta isolamendua murrizteko espazio segurua eta horizontala da."},
+ "services":{"es":["Un espacio seguro y confidencial donde compartir experiencias, reflexiones e ideas con otras personas LGTBIQ+ de Burlada.","Acompañamiento entre iguales, basado en la empatía y la vivencia compartida."],"eu":["Burlatako beste LGTBIQ+ pertsona batzuekin esperientziak, gogoetak eta ideiak partekatzeko gune seguru eta konfidentziala.","Berdinen arteko laguntza, enpatian eta bizipen partekatuan oinarritua."]},
+"email":"lgtbi@burlada.es", "web":"https://labur.eus/xirimirilgtbiq",
+ "schedule":{"es":"Los penúltimos viernes del mes a las 19:00h","eu":"Hileko azken aurreko ostiraletan 19:00etan"},
+ "access":{"es":"Gratuito. Previa inscripción.","eu":"Doakoa, aldez aurretik izena emanda"},
+ "tags":{"es":["discriminación","derechos","psicología","atención juvenil"],"eu":["diskriminazioa","eskubideak","psikologikoa"]}},
+
+{"id":"demo-orgullo","active":true,"category":"participacion","subcategory":"eventos","scope":"municipal","audiences":["all"],
+ "name":{"es":"Jornadas del Orgullo (ejemplo)","eu":"Harrotasun jardunaldiak (adibidea)"},
+ "description":{"es":"Actividades abiertas en torno al 28 de junio.","eu":"Ekainaren 28ren inguruko jarduera irekiak."},
+ "services":{"es":["Charlas","Cine","Música"],"eu":["Hitzaldiak","Zinema","Musika"]},
+ "web":"https://www.burlada.es","tags":{"es":["orgullo","cultura"],"eu":["harrotasuna","kultura"]}}]}
