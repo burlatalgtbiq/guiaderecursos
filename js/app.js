@@ -30,15 +30,13 @@ $('#langs').hidden=true;$('#langbtn').setAttribute('aria-expanded','false');
  $('#langs').innerHTML=langBtns(r.rest);
  $('#foot').innerHTML=`<img src="assets/logo-ayuntamiento.png" alt="Ayuntamiento de Burlada/Burlata" onerror="this.remove()"><span>${esc(t('foot'))}</span>`;$('#exit').textContent='✕ '+t('exit');$('#exit').setAttribute('aria-label',t('exitL'));}
 const card=r=>{const c=catOf(r.category);return`<li class="card" style="--c:${c.color}"><h3><a href="${href('recurso',r.id)}">${esc(L(r.name))}</a></h3><p class="meta">${esc(L(c.name))} — ${esc(subList(r).join(', '))}</p><p>${esc(L(r.description))}</p><p>${(r.audiences||[]).map(a=>`<span class="tag">${esc(L(byId('audiences',a).name))}</span>`).join('')}</p></li>`};
+const featCard=r=>{const c=catOf(r.category);return`<li class="fcard" style="--c:${c.color}"><p class="pill">${esc(L(c.name))}</p><div class="frow">${r.logo?`<img src="${esc(r.logo)}" alt="" loading="lazy">`:''}<div><h3><a href="${href('recurso',r.id)}">${esc(L(r.name))}</a></h3><p>${esc(L(r.description))}</p></div></div></li>`};
 function home(){
  const f=D.r.filter(r=>r.featured);
  M.innerHTML=`<section class="hero"><div class="wrap"><h1>${esc(t('title'))}<br>Burlada/Burlata</h1><p>${esc(t('intro'))}</p>
  <form class="sform" role="search"><label class="vh" for="q">${t('search')}</label><input id="q" type="search" placeholder="${esc(t('ph'))}"><button>${t('go')}</button></form></div></section>
- <div class="wrap"><h2>${t('cats')}</h2><ul class="grid">${cats().map(c=>`<li><a class="cat" style="--c:${c.color}" href="${href('categoria',c.id)}"><span class="ic" aria-hidden="true">${c.icon}</span><h3>${esc(L(c.name))}</h3><p>${esc(L(c.desc))}</p></a></li>`).join('')}</ul>
- <h2>${t('feat')}</h2><ul class="grid">${f.map(card).join('')}</ul>
- <h2>${t('about')}</h2><p style="max-width:65ch">${esc(t('aboutTxt'))}</p>
- <div class="note"><strong>${t('scopeT')}.</strong> ${esc(t('scopeTxt'))}</div>
- <h2>${t('info')}</h2><ul>${D.c.links.map(l=>`<li><a href="${safe(l.url)}" rel="noopener">${esc(L(l.name))}</a> — ${esc(L(l.desc))}</li>`).join('')}</ul></div>`;
+ <div class="wrap"><h2>${t('cats')}</h2><ul class="grid catgrid">${cats().map(c=>`<li><a class="cat" style="--c:${c.color}" href="${href('categoria',c.id)}">${c.image?`<img src="${esc(c.image)}" alt="" loading="lazy">`:`<span class="ic" aria-hidden="true">${c.icon}</span>`}<div><h3>${esc(L(c.name))}</h3><p>${esc(L(c.desc))}</p></div></a></li>`).join('')}</ul>
+ <h2>${t('feat')}</h2><ul class="grid featgrid">${f.map(featCard).join('')}</ul></div>`;
  $('form').onsubmit=e=>{e.preventDefault();location.hash=href('buscar')+'?q='+encodeURIComponent($('#q').value)}}
 function list(c,q,intro){
  const opt=(arr,k,sel)=>`<option value="">${t('all')}</option>`+arr.map(x=>`<option value="${x.id}"${sel===x.id?' selected':''}>${esc(L(x.name))}</option>`).join('');
@@ -78,7 +76,7 @@ function res(id){
  const info=[['addr',esc(r.address)],['tel',r.phone&&`<a href="tel:${esc(r.phone.replace(/[^+\d]/g,''))}" dir="ltr">${esc(r.phone)}</a>`],['sch',esc(L(r.schedule))]].filter(x=>x[1]).map(([k,v])=>`<div><dt>${t(k)}</dt><dd>${v}</dd></div>`).join('');
  const pills=[L(c.name),...subList(r)].filter(Boolean).map(x=>`<span>${esc(x)}</span>`).join('');
   M.innerHTML=`<section class="headbox" style="--c:${c.color}"><div class="wrap"><p><a href="${href('categoria',r.category)}">← ${t('back')}: ${esc(L(c.name))}</a></p>
- <div class="headrow"><h1>${esc(L(r.name))}</h1><p class="pills">${pills}</p></div>
+<div class="headrow"><h1>${esc(L(r.name))}</h1><div class="side"><p class="pills">${pills}</p>${r.logo?`<img class="rlogo" src="${esc(r.logo)}" alt="">`:''}</div></div>
  ${L(r.description)?`<hr class="sep"><p class="lead">${esc(L(r.description))}</p>`:''}</div></section>
  ${info?`<section class="catbox" style="--c:${c.color}"><div class="wrap"><dl class="facts">${info}</dl></div></section>`:''}
  <article class="wrap" style="--c:${c.color}">
@@ -101,5 +99,3 @@ addEventListener('keydown',e=>{if(e.key!=='Escape')return;
  if(!$('#langs').hidden){$('#langs').hidden=true;$('#langbtn').setAttribute('aria-expanded','false');$('#langbtn').focus()}
  else if(!$('#nav').hidden){$('#nav').hidden=true;$('#menu').setAttribute('aria-expanded','false');$('#menu').focus()}}); addEventListener('hashchange',render);render()})();
 })();
-
-
