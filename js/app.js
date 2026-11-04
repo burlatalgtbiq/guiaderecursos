@@ -29,7 +29,7 @@ function chrome(r){
 $('#langs').hidden=true;$('#langbtn').setAttribute('aria-expanded','false');
  $('#langs').innerHTML=langBtns(r.rest);
  $('#foot').innerHTML=`<img src="assets/logo-ayuntamiento.png" alt="Ayuntamiento de Burlada/Burlata" onerror="this.remove()"><span>${esc(t('foot'))}</span>`;$('#exit').textContent='✕ '+t('exit');$('#exit').setAttribute('aria-label',t('exitL'));}
-const card=r=>{const c=catOf(r.category);return`<li class="card" style="--c:${c.color}"><h3><a href="${href('recurso',r.id)}">${esc(L(r.name))}</a></h3><p class="meta">${esc(L(c.name))} — ${esc(subList(r).join(', '))}</p><p>${esc(L(r.description))}</p><p>${(r.audiences||[]).map(a=>`<span class="tag">${esc(L(byId('audiences',a).name))}</span>`).join('')}</p></li>`};
+const card=r=>{const c=catOf(r.category);return`<li class="card" style="--c:${c.color}"><h3><a href="${href('recurso',r.id)}">${esc(L(r.name))}</a></h3><p class="meta">${esc(L(c.name))} — ${esc(subList(r).join(', '))}</p><p class="desc">${esc(L(r.description))}</p><p class="tags">${(r.audiences||[]).map(a=>`<span class="tag">${esc(L(byId('audiences',a).name))}</span>`).join('')}</p></li>`};
 const featCard=r=>{const c=catOf(r.category);return`<li class="fcard" style="--c:${c.color}"><p class="pill">${esc(L(c.name))}</p><div class="frow">${r.logo?`<img src="${esc(r.logo)}" alt="" loading="lazy">`:''}<div><h3><a href="${href('recurso',r.id)}">${esc(L(r.name))}</a></h3><p>${esc(L(r.description))}</p></div></div></li>`};
 function home(){
  const f=D.r.filter(r=>r.featured);
@@ -99,3 +99,4 @@ addEventListener('keydown',e=>{if(e.key!=='Escape')return;
  if(!$('#langs').hidden){$('#langs').hidden=true;$('#langbtn').setAttribute('aria-expanded','false');$('#langbtn').focus()}
  else if(!$('#nav').hidden){$('#nav').hidden=true;$('#menu').setAttribute('aria-expanded','false');$('#menu').focus()}}); addEventListener('hashchange',render);render()})();
 })();
+
