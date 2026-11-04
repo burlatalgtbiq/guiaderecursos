@@ -33,8 +33,12 @@ button,.btn{background:var(--pri);color:#fff;border-color:var(--pri);font-weight
 @media(prefers-color-scheme:dark){button,.btn{color:#14132b}}
 .btn.alt{background:transparent;color:var(--pri)}.btn:hover,button:hover{background:var(--acc);border-color:var(--acc);color:#fff}
 .grid{display:grid;gap:1rem;grid-template-columns:repeat(auto-fill,minmax(15rem,1fr));padding:0;list-style:none}
-.card{background:var(--card);border:1px solid var(--line);border-left:8px solid var(--c);border-radius:.6rem;padding:1rem 1.1rem}
-.card h3 a{color:var(--ink)}.card p{margin:.3rem 0}
+.card{position:relative;display:flex;flex-direction:column;background:var(--card);border:1px solid var(--line);border-bottom:6px solid var(--c);padding:1rem 1.1rem}
+.card h3,.card h3 a{color:var(--c)}
+.card h3 a::after{content:"";position:absolute;inset:0}
+.card p{margin:.3rem 0}
+.card .desc{display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:3;line-clamp:3;overflow:hidden}
+.card .tags{margin-top:auto;padding-top:.5rem}
 .meta,.small{color:var(--mut);font-size:.95rem}
 .tag{display:inline-block;border:1px solid var(--line);border-radius:2rem;padding:0 .7rem;margin:.15rem .15rem 0 0;font-size:.88rem}
 .filters{display:grid;gap:.6rem;grid-template-columns:repeat(auto-fit,minmax(11rem,1fr));margin:1rem 0}
