@@ -1,0 +1,3 @@
+Añade aquí los logotipos de los recursos.
+Logotipos: PNG, SVG o WebP con fondo transparente, de unos 400 px de ancho.
+Si un recurso no tiene logotipo sencillamente no lo muestra.
