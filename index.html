@@ -5,16 +5,33 @@
 <link rel="icon" href="assets/logo.svg" type="image/svg+xml"><link rel="apple-touch-icon" href="assets/apple-touch-icon.png"><link rel="manifest" href="manifest.webmanifest">
 <meta name="theme-color" content="#24215e"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="Guía de recursos LGTBIQ+"><meta name="application-name" content="Guía de recursos LGTBIQ+"><link rel="stylesheet" href="css/style.css"></head>
 <body><a class="skip" id="skip" href="#main">Saltar al contenido</a>
-<header class="top"><a id="brand" class="brand"></a>
-<div class="tools"><div class="langwrap">
-  <button id="langbtn" class="burger langbtn" type="button" aria-expanded="false" aria-controls="langs">
-    <svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2c3 3 3 17 0 20M12 2c-3 3-3 17 0 20"/></svg>
-    <span id="langtxt" class="txt"></span>
-  </button>
-  <div id="langs" class="langs" hidden></div>
+<header class="top">
+<div class="toprow">
+  <a class="ayto" href="https://www.burlada.es" target="_blank" rel="noopener"><img src="assets/logo-ayuntamiento.png" alt="Ayuntamiento de Burlada/Burlata" onerror="this.parentNode.remove()"></a>
+  <div class="tools">
+    <div class="langwrap">
+      <button id="langbtn" class="ibtn" type="button" aria-expanded="false" aria-controls="langs">
+        <svg width="26" height="26" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2c3 3 3 17 0 20M12 2c-3 3-3 17 0 20"/></svg>
+        <span id="langtxt" class="txt"></span>
+        <svg width="14" height="14" viewBox="0 0 14 14" aria-hidden="true"><path d="M1 4h12L7 11z" fill="currentColor"/></svg>
+      </button>
+      <div id="langs" class="langs" hidden></div>
+    </div>
+    <div class="sgroup">
+      <a id="searchlink" class="ibtn" href="#/es/buscar"><svg width="26" height="26" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><circle cx="10" cy="10" r="6.5"/><path d="M15 15l6 6"/></svg></a>
+      <div class="appswrap">
+        <button id="appsbtn" class="ibtn" type="button" aria-expanded="false" aria-controls="apps"><svg width="26" height="26" viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><circle cx="5" cy="5" r="2"/><circle cx="12" cy="5" r="2"/><circle cx="19" cy="5" r="2"/><circle cx="5" cy="12" r="2"/><circle cx="12" cy="12" r="2"/><circle cx="19" cy="12" r="2"/><circle cx="5" cy="19" r="2"/><circle cx="12" cy="19" r="2"/><circle cx="19" cy="19" r="2"/></svg></button>
+        <div id="apps" class="apps" hidden></div>
+      </div>
+    </div>
+  </div>
 </div>
-<button id="menu" class="burger" type="button" aria-expanded="false" aria-controls="nav"><svg width="26" height="20" viewBox="0 0 26 20" aria-hidden="true"><path d="M1 2h24M1 10h24M1 18h24" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/></svg></button></div>
-<nav id="nav" hidden></nav></header>
+<div class="titlerow">
+  <a id="brand" class="brand"></a>
+  <button id="menu" class="burger" type="button" aria-expanded="false" aria-controls="nav"><svg width="26" height="20" viewBox="0 0 26 20" aria-hidden="true"><path d="M1 2h24M1 10h24M1 18h24" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/></svg></button>
+</div>
+<nav id="nav" hidden></nav>
+</header>
 <button id="exit" class="exit" type="button"></button>
 <main id="main" tabindex="-1"><p class="wrap">Cargando…</p></main>
 <footer id="foot"></footer>
