@@ -13,4 +13,10 @@
  "subs":[{"id":"foros","name":{"es":"Foros y consejos","eu":"Foroak eta kontseiluak","ar":"المنتديات والنصائح"}},{"id":"eventos","name":{"es":"Actividades y eventos","eu":"Jarduerak eta ekitaldiak","ar":"الأنشطة والفعاليات"}}]}],
 "audiences":[{"id":"todos","name":{"es":"Toda la ciudadanía","eu":"Herritar guztiak","ar":"لجميع المواطنين"}},{"id":"lgtbiq","name":{"es":"Personas LGTBIQ+","eu":"LGTBIQ+ pertsonak","ar":"أفراد مجتمع الميم"}},{"id":"trans","name":{"es":"Personas trans","eu":"Pertsona transak","ar":"المتحولون جنسيا"}},{"id":"juventud","name":{"es":"Juventud","eu":"Gazteak","ar":"شباب"}},{"id":"familias","name":{"es":"Familias","eu":"Familiak","ar":"العائلات"}},{"id":"migrantes","name":{"es":"Personas migrantes","eu":"Migratzaileak","ar":"المهاجرون"}},{"id":"profesionales","name":{"es":"Profesionales","eu":"Profesionalak","ar":"محترفون"}}],
 "scopes":[{"id":"municipal","name":{"es":"Burlada/Burlata","eu":"Burlata"}},{"id":"comarcal","name":{"es":"Comarca de Pamplona","eu":"Iruñerria"}},{"id":"foral","name":{"es":"Navarra","eu":"Nafarroa"}},{"id":"estatal","name":{"es":"Estado","eu":"Estatua"}}],
-"links":[{"url":"https://www.burlada.es","name":{"es":"Ayuntamiento de Burlada/Burlata","eu":"Burlatako Udala","ar":"مجلس مدينة بورلادا"},"desc":{"es":"Web municipal con trámites e información.","eu":"Udalaren webgunea: izapideak eta informazioa.","ar":"موقع البلدية الإلكتروني الذي يحتوي على الإجراءات والمعلومات."}}]}
+"links":[{"url":"https://www.burlada.es","name":{"es":"Ayuntamiento de Burlada/Burlata","eu":"Burlatako Udala","ar":"مجلس مدينة بورلادا"},"desc":{"es":"Web municipal con trámites e información.","eu":"Udalaren webgunea: izapideak eta informazioa.","ar":"موقع البلدية الإلكتروني الذي يحتوي على الإجراءات والمعلومات."}}],
+"apps":[
+ {"name":{"es":"Ayuntamiento","eu":"Udala","ar":"البلدية"},"url":"https://www.burlada.es"},
+ {"name":{"es":"Sede electrónica","eu":"Egoitza elektronikoa","ar":"المقر الإلكتروني"},"url":"https://www.burlada.es"},
+ {"name":{"es":"Tablón de anuncios","eu":"Iragarki-oholtza","ar":"لوحة الإعلانات"},"url":"https://www.burlada.es"},
+ {"name":{"es":"Agenda","eu":"Agenda","ar":"الأجندة"},"url":"https://www.burlada.es"}
+]}
