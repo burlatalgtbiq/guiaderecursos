@@ -62,7 +62,6 @@ a.cat h3{color:var(--c);margin:0 0 .4rem}
 a.cat p{margin:0}
 
 /* Tarjetas de destacados en portada */
-.featgrid{grid-template-columns:repeat(auto-fill,minmax(20rem,1fr))}
 .fcard{position:relative;display:flex;flex-direction:column;gap:.8rem;padding:1rem;background:var(--card);border:1px solid var(--line);border-bottom:6px solid var(--c)}
 .fcard .pill{align-self:flex-start;margin:0;padding:.2rem .9rem;border-radius:2rem;background:var(--c);color:#fff;font-size:.9rem;font-weight:700}
 .frow{display:flex;align-items:center;gap:1rem}
@@ -70,6 +69,15 @@ a.cat p{margin:0}
 .frow h3{color:var(--c);margin:0 0 .4rem}.frow h3 a{color:var(--c)}
 .frow p{margin:0}
 .fcard h3 a::after{content:"";position:absolute;inset:0}
+.fcard .frow p{display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:4;line-clamp:4;overflow:hidden}
+/* Destacados: 4 por fila en ordenador, 2 en tableta, 1 en móvil */
+.featgrid{grid-template-columns:repeat(4,1fr)}
+@media(max-width:1000px){.featgrid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:600px){.featgrid{grid-template-columns:1fr}}
+
+/* Con 4 columnas cada tarjeta es estrecha: logo arriba y texto debajo */
+.featgrid .frow{flex-direction:column;align-items:flex-start;gap:.8rem}
+.featgrid .frow img{width:100%;max-width:45%;height:var(--logo-h)}
 
 /* Columna derecha de la cabecera: etiquetas y logo */
 .headrow h1{flex:1 1 24rem}
@@ -105,6 +113,33 @@ footer{background:linear-gradient(120deg,#fde3ee 0%,#fbf1f6 45%,#dff4f7 100%)}
 .langs{position:absolute;top:calc(100% + .5rem);inset-inline-end:0;flex-direction:column;gap:0;min-width:11rem;background:var(--card);border:2px solid var(--line);box-shadow:0 4px 14px rgba(0,0,0,.25);z-index:30}
 .langs[hidden]{display:none}
 .langs a{border:0;width:100%;justify-content:flex-start;padding:.6rem 1rem;min-height:48px}
+
+/* Cabecera en dos filas */
+.top{display:block;padding:.6rem 1rem calc(.9rem + 6px)}
+.toprow{display:flex;align-items:center;justify-content:space-between;gap:.5rem}
+.top .tools{display:flex;align-items:center;gap:.4rem;flex-wrap:nowrap}
+.ayto{flex:0 1 auto;min-width:0}
+.ayto img{display:block;height:34px;max-width:100%;width:auto}
+.langwrap,.appswrap{position:relative}
+.langwrap,.sgroup{display:flex;align-items:center;border-inline-start:1px solid var(--line);padding-inline-start:.6rem}
+.ibtn{background:transparent;border:0;color:var(--mut);min-width:44px;min-height:44px;padding:0 .3rem;display:inline-flex;align-items:center;justify-content:center;gap:.4rem;font-weight:700;font-size:1rem;text-decoration:none;cursor:pointer}
+.ibtn:hover{background:var(--line);color:var(--ink);border:0}
+#langtxt{display:inline;color:var(--ink)}
+.titlerow{display:flex;align-items:flex-start;justify-content:space-between;gap:1rem;margin-top:.8rem}
+.titlerow .brand{display:block;flex:1 1 auto;margin:0;color:var(--ink);text-decoration:none}
+.brand strong{display:block;font-size:clamp(1.3rem,5.5vw,2rem);line-height:1.05;letter-spacing:-.02em}
+.top nav{margin-top:.6rem}
+.apps{position:absolute;top:calc(100% + .5rem);inset-inline-end:0;display:flex;flex-direction:column;min-width:14rem;background:var(--card);border:2px solid var(--line);box-shadow:0 4px 14px rgba(0,0,0,.25);z-index:30}
+.apps[hidden]{display:none}
+.apps a{display:flex;align-items:center;min-height:48px;padding:.6rem 1rem;color:var(--ink);font-weight:600;text-decoration:none}
+.apps a:hover{background:var(--line)}
+@media(max-width:600px){#langtxt{display:none}.langwrap,.sgroup{padding-inline-start:.3rem}}
+
+/* Título de la portada */
+.herot{font-size:clamp(1.5rem,5vw,2.4rem);max-width:28ch;margin:0 0 1rem}
+
+/* Salida rápida: esquina inferior */
+.exit{top:auto;bottom:calc(env(safe-area-inset-bottom,0px) + 1rem);right:auto;inset-inline-end:.8rem}
 
 /* Caja de color en las páginas de categoría */
 .catbox{background:var(--c);color:#fff}
