@@ -21,19 +21,20 @@ function route(){
  return{l,seg,rest:seg.join('/')+(qs?'?'+qs:''),q:Object.fromEntries(new URLSearchParams(qs||''))}}
 function chrome(r){
  $('#skip').textContent=t('skip');
- const b=$('#brand');b.href=href();b.innerHTML=`<img src="assets/logo.svg" alt="" width="44" height="44"><span><strong>${esc(t('title'))}</strong><small>Burlada/Burlata</small></span>`;
- $('#nav').setAttribute('aria-label','Principal');$('#menu').setAttribute('aria-label',t('menu'));$('#nav').hidden=true;$('#menu').setAttribute('aria-expanded','false');
+const b=$('#brand');b.href=href();b.innerHTML=`<strong>${esc(t('t1'))}<br>${esc(t('t2'))}</strong>`; $('#nav').setAttribute('aria-label','Principal');$('#menu').setAttribute('aria-label',t('menu'));$('#nav').hidden=true;$('#menu').setAttribute('aria-expanded','false');
  $('#nav').innerHTML=`<a href="${href()}"${!r.seg[0]?' aria-current="page"':''}>${t('home')}</a>`+cats().map(c=>`<a href="${href('categoria',c.id)}"${r.seg[1]===c.id&&r.seg[0]==='categoria'?' aria-current="page"':''}>${esc(L(c.name))}</a>`).join('')+`<a href="${href('buscar')}"${r.seg[0]==='buscar'?' aria-current="page"':''}>${t('search')}</a>`;
  $('#langs').setAttribute('role','group');$('#langs').setAttribute('aria-label','Idioma / Hizkuntza / اللغة');
- $('#langbtn').setAttribute('aria-label',t('chooseLang'));$('#langtxt').textContent=t('chooseLang');
-$('#langs').hidden=true;$('#langbtn').setAttribute('aria-expanded','false');
+$('#langbtn').setAttribute('aria-label',t('chooseLang'));$('#langtxt').textContent=NAMES[lang];
+$('#searchlink').href=href('buscar');$('#searchlink').setAttribute('aria-label',t('search'));
+$('#appsbtn').setAttribute('aria-label',t('apps'));$('#apps').hidden=true;$('#appsbtn').setAttribute('aria-expanded','false');
+$('#apps').innerHTML=(D.c.apps||[]).map(a=>`<a href="${esc(safe(a.url))}" rel="noopener" target="_blank">${esc(L(a.name))}</a>`).join('');$('#langs').hidden=true;$('#langbtn').setAttribute('aria-expanded','false');
  $('#langs').innerHTML=langBtns(r.rest);
  $('#foot').innerHTML=`<img src="assets/logo-ayuntamiento.png" alt="Ayuntamiento de Burlada/Burlata" onerror="this.remove()"><span>${esc(t('foot'))}</span>`;$('#exit').textContent='✕ '+t('exit');$('#exit').setAttribute('aria-label',t('exitL'));}
 const card=r=>{const c=catOf(r.category);return`<li class="card" style="--c:${c.color}"><h3><a href="${href('recurso',r.id)}">${esc(L(r.name))}</a></h3><p class="meta">${esc(L(c.name))} — ${esc(subList(r).join(', '))}</p><p class="desc">${esc(L(r.description))}</p><p class="tags">${(r.audiences||[]).map(a=>`<span class="tag">${esc(L(byId('audiences',a).name))}</span>`).join('')}</p></li>`};
 const featCard=r=>{const c=catOf(r.category);return`<li class="fcard" style="--c:${c.color}"><p class="pill">${esc(L(c.name))}</p><div class="frow">${r.logo?`<img src="${esc(r.logo)}" alt="" loading="lazy">`:''}<div><h3><a href="${href('recurso',r.id)}">${esc(L(r.name))}</a></h3><p>${esc(L(r.description))}</p></div></div></li>`};
 function home(){
  const f=D.r.filter(r=>r.featured);
- M.innerHTML=`<section class="hero"><div class="wrap"><h1>${esc(t('title'))}<br>Burlada/Burlata</h1><p>${esc(t('intro'))}</p>
+ M.innerHTML=`<section class="hero"><div class="wrap"><h1 class="herot">${esc(t('intro'))}</h1>
  <form class="sform" role="search"><label class="vh" for="q">${t('search')}</label><input id="q" type="search" placeholder="${esc(t('ph'))}"><button>${t('go')}</button></form></div></section>
  <div class="wrap"><h2>${t('cats')}</h2><ul class="grid catgrid">${cats().map(c=>`<li><a class="cat" style="--c:${c.color}" href="${href('categoria',c.id)}">${c.image?`<img src="${esc(c.image)}" alt="" loading="lazy">`:`<span class="ic" aria-hidden="true">${c.icon}</span>`}<div><h3>${esc(L(c.name))}</h3><p>${esc(L(c.desc))}</p></div></a></li>`).join('')}</ul>
  <h2>${t('feat')}</h2><ul class="grid featgrid">${f.map(featCard).join('')}</ul></div>`;
@@ -93,10 +94,11 @@ function render(){
  D={c,r:x.resources.filter(r=>r.active!==false)};T=i}catch(e){M.innerHTML='<p class="wrap">Error: abre el sitio desde un servidor web / Ireki gunea web zerbitzari batetik.</p>';return}
  $('#exit').onclick=()=>{try{window.close()}catch(e){}location.replace('https://www.google.es')};
  $('#menu').onclick=()=>{const n=$('#nav'),o=n.hidden;n.hidden=!o;$('#menu').setAttribute('aria-expanded',o)};
-$('#langbtn').onclick=e=>{e.stopPropagation();const l=$('#langs'),o=l.hidden;l.hidden=!o;$('#langbtn').setAttribute('aria-expanded',o)};
-addEventListener('click',e=>{if(!e.target.closest('.langwrap')||e.target.closest('#langs a')){$('#langs').hidden=true;$('#langbtn').setAttribute('aria-expanded','false')}});
-addEventListener('keydown',e=>{if(e.key!=='Escape')return;
- if(!$('#langs').hidden){$('#langs').hidden=true;$('#langbtn').setAttribute('aria-expanded','false');$('#langbtn').focus()}
- else if(!$('#nav').hidden){$('#nav').hidden=true;$('#menu').setAttribute('aria-expanded','false');$('#menu').focus()}}); addEventListener('hashchange',render);render()})();
+const pop=[['#langbtn','#langs'],['#appsbtn','#apps']];
+const closePop=()=>pop.forEach(([b,p])=>{$(p).hidden=true;$(b).setAttribute('aria-expanded','false')});
+pop.forEach(([b,p])=>$(b).onclick=e=>{e.stopPropagation();const o=$(p).hidden;closePop();$(p).hidden=!o;$(b).setAttribute('aria-expanded',o)});
+addEventListener('click',e=>{if(!e.target.closest('.langwrap,.appswrap')||e.target.closest('#langs a,#apps a'))closePop()});
+addEventListener('keydown',e=>{if(e.key!=='Escape')return;const op=pop.find(([b,p])=>!$(p).hidden);
+ if(op){closePop();$(op[0]).focus()}else if(!$('#nav').hidden){$('#nav').hidden=true;$('#menu').setAttribute('aria-expanded','false');$('#menu').focus()}});
+addEventListener('hashchange',render);render()})();
 })();
-
